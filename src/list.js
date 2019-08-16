@@ -8,22 +8,22 @@ const mock = [
 ]
 
 const ItemMock = ({id, text, status})=>{
-    return <div>{status}: {text}: {id}</div>
+    return <div> {text} </div>
 }
 
 const List = ({ items = mock }) => {
 
     return (
       <Box>
-        <ul>
+        <TaskList>
           {
-            items.map(item =>(
-              <ListItem key={item.id} >
+            items.map(item => item.status !== 'removed' && (
+              <ListItem key={item.id} isCompleted={item.status === 'completed'} >
                   <ItemMock {...item} />
               </ListItem>
             ))
           }
-        </ul>
+        </TaskList>
       </Box>
     );
   };
@@ -38,15 +38,20 @@ const List = ({ items = mock }) => {
       overflow-x: hidden;
       overflow-y: scroll;
   `;
+  const TaskList = styled.ul`
+      list-style: none;
+  `
 
 
   const ListItem = styled.li`
      
-     &:nth-child(even) {
+     text-decoration: ${props => props.isCompleted ? 'line-through' : 'azure'}
+     
+     /* &:nth-child(even) {
       background: azure;
-  }
+  } */
 
-     &:nth-child(odd) {
+     /* &:nth-child(odd) {
        background: aliceblue;
-  }
+  } */
   `
