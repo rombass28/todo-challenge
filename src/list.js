@@ -17,8 +17,8 @@ const List = ({ items = mock }) => {
       <Box>
         <TaskList>
           {
-            items.map(item => item.status !== 'removed' && (
-              <ListItem key={item.id} isCompleted={item.status === 'completed'} >
+            items.map(item => (
+              <ListItem key={item.id}>
                   <ItemMock {...item} />
               </ListItem>
             ))
@@ -45,7 +45,7 @@ const List = ({ items = mock }) => {
 
   const ListItem = styled.li`
      
-     text-decoration: ${props => props.isCompleted ? 'line-through' : 'azure'}
+     /* text-decoration: ${props => props.isCompleted ? 'line-through' : 'azure'} */
      
      /* &:nth-child(even) {
       background: azure;
